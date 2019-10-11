@@ -1,0 +1,79 @@
+public static intNode addBefore(intNode front, int target, int newItem){
+	
+	intNode prev = null, ptr = front;
+	while(ptr != null && ptr.data != target){
+		prev = ptr;
+		ptr = ptr.next;
+	}
+	if(ptr == null) return front;
+	intNode temp = new Node(newItem, ptr);
+	if(prev == null) return temp;
+	prev.next = temp;
+	return front;
+}
+public static IntNode addBeforeLast(IntNode front, int item) {
+	/* COMPLETE THIS METHOD */
+	if(front == null){
+		front = new Node(item, null);
+	}
+	intNode ptr = front, prev = null;
+	while(ptr.next != null) prev = ptr; ptr = ptr.next; 
+	IntNode temp = new Node(item, ptr);
+	if(prev == null) return temp;
+	prev.next = temp;
+	return front;
+} 
+public static int numberOfOccurrences(StringNode front, String target) {
+	/* COMPLETE THIS METHOD */
+
+	int counter = 0;
+	for(StringNode ptr = front; ptr != null; ptr = ptr.next){
+		if(ptr.data.equals(target)) counter++;
+	}
+	return counter;
+} 
+public static void deleteEveryOther(IntNode front) {
+	/* COMPLETE THIS METHOD */
+	if(front == null) return;
+	boolean even = false;
+	IntNode prev = null, ptr = front;
+	while(ptr != null){
+		if(even){
+			prev.next = ptr;
+		}
+		even = !even;
+		prev = ptr;
+		ptr = ptr.next;
+}
+public static StringNode deleteAllOccurrences(StringNode front, String target) {
+	/* COMPLETE THIS METHOD */
+	StringNode prev = null; ptr = front;
+	while(ptr != null){
+		if(ptr.data.equals(target)){
+			if(prev == null)front = ptr.next; 
+			else prev.next = ptr.next;
+		}
+		prev = ptr;
+		ptr = ptr.next;
+	}
+	return front;
+} 
+ public IntNode commonElements(IntNode frontL1, IntNode frontL2) {
+	IntNode first = null, last = null;
+	while(frontL1 != null &&  frontL2 != null){
+		if(frontL1.data < frontL2.data){
+			frontL1 = frontL1.next;
+		}
+		else if(frontL2.data < frontL1.data){
+			frontL2 = frontL2.next;	 
+		}
+		else{
+			IntNode ptr = new Node(frontL1.data, null);
+			if(last != null) last.next = ptr;
+			else first = ptr;
+			last = ptr;
+			frontL1 = frontL1.next;
+			frontL2 = frontL2.next
+		}
+	return first;
+}
